@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package tmp;
+
+option go_package = "./pb";
+
+message tmpRequest {
+  string msg = 1;
+};
+
+message tmpResponse {
+  string msg = 1;
+};
+
+service TmpService {
+  rpc unaryRPC (tmpRequest) returns (tmpResponse);
+  rpc serverStreamingRPC (tmpRequest) returns (stream tmpResponse);
+  rpc clientStreamingRPC (stream tmpRequest) returns (tmpResponse);
+  rpc bidirectionalStreamingRPC (stream tmpRequest) returns (stream tmpResponse);
+}
